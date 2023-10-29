@@ -306,7 +306,7 @@ Selin
 Anne
 Feline
 Juliana
-Käthe
+Kaethe
 Janna
 Jella
 Cara
@@ -397,7 +397,7 @@ Nour
 Rita
 Soraya
 Tamina
-Zümra
+Zuemra
 Alisha
 Anais
 Jolien
@@ -477,7 +477,7 @@ Charlotta
 Dila
 Elissa
 Elodie
-Eylül
+Eyluel
 Ilayda
 Jill
 Juliane
@@ -742,7 +742,7 @@ William
 Leonhard
 Otto
 Ryan
-Ömer
+Oemer
 Hendrik
 Roman
 Tiago
@@ -811,7 +811,7 @@ Carlos
 Christopher
 Quirin
 Umut
-Björn
+Bjoern
 Caspar
 Chris
 Ilja
