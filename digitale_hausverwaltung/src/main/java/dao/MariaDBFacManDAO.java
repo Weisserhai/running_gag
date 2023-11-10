@@ -120,7 +120,7 @@ public class MariaDBFacManDAO implements FacManDAO{
     public static Connection connectToMariaDB() {
         Connection connection = null;
 
-        String jdbcUrl = "jdbc:mariadb://localhost:3306/running_gag_database";
+        String jdbcUrl = "jdbc:mariadb://localhost:3307/running_gag";
         String username = "running_gag";
         String password = "";
 
