@@ -121,8 +121,8 @@ public class MariaDBFacManDAO implements FacManDAO{
         Connection connection = null;
 
         String jdbcUrl = "jdbc:mariadb://localhost:3307/running_gag";
-        String username = "running_gag";
-        String password = "";
+        String username = "root";
+        String password = "root";
 
         try {
             connection = DriverManager.getConnection(jdbcUrl, username, password);
