@@ -28,9 +28,11 @@ public class MariaDBCustomerDAO implements CustomerDAO {
             PreparedStatement IdSelect = connection.prepareStatement("SELECT ID FROM customer WHERE UUID = ?");
             IdSelect.setString(1, generatedUUID);
             ResultSet rs = IdSelect.executeQuery();
-            int id = rs.getInt("ID");
-
-            return id;
+            if (rs.next()) {
+                int id = rs.getInt("ID");
+                
+                return id;
+            }
         } catch (SQLException e) {
             System.out.println("Error from create without Object: " + e.getMessage());
             e.printStackTrace();
@@ -49,13 +51,17 @@ public class MariaDBCustomerDAO implements CustomerDAO {
             PreparedStatement ps = connection.prepareStatement("Select * from customer where ID = ?");
             ps.setObject(1,id);
             ResultSet resultSet = ps.executeQuery();
-            Customer customer = new Customer(
-                resultSet.getInt("ID"),
-                resultSet.getString("UUID"),
-                resultSet.getString("firstName"),
-                resultSet.getString("lastName")
-            );
-            return customer;
+            if (resultSet.next()) {
+                Customer customer = new Customer(
+                    resultSet.getInt("ID"),
+                    resultSet.getString("UUID"),
+                    resultSet.getString("firstName"),
+                    resultSet.getString("lastName")
+                );
+                
+                return customer;
+            }
+
         } catch (SQLException e) {
             System.out.println("Error from get: " + e.getMessage());
             e.printStackTrace();

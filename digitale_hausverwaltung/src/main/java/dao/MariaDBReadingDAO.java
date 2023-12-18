@@ -37,9 +37,11 @@ public class MariaDBReadingDAO implements ReadingDAO {
             PreparedStatement IdSelect = conn.prepareStatement("SELECT ID FROM reading WHERE UUID = ?");
             IdSelect.setString(1, generatedUUID);
             ResultSet rs = IdSelect.executeQuery();
-            int id = rs.getInt("ID");
+            if (rs.next()) {
+                int id = rs.getInt("ID");
 
-            return id;
+                return id;
+            }
         } catch (SQLException e) {
             System.out.println("Error from create" + e.getMessage());
             e.printStackTrace();
@@ -63,13 +65,13 @@ public class MariaDBReadingDAO implements ReadingDAO {
     public Reading get(int id) {
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM reading WHERE ID = ?");
-            ps.setObject(1, id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Reading reading = new Reading(
                     id, 
                     rs.getString("UUID"),
-                    rs.getInt("customer_id"),
+                    rs.getInt("customerId"),
                     rs.getDate("dateOfReading").toLocalDate(), 
                     rs.getString("typeOfReading"), 
                     rs.getInt("meterCount"), 
@@ -218,7 +220,12 @@ public class MariaDBReadingDAO implements ReadingDAO {
             ps.setInt(3, metercount);
             ps.setString(4, comment);
             ps.setInt(5, id);
-            return (ps.executeUpdate() !=0) ;
+
+            if (ps.executeUpdate() != 0) {
+                return true;
+            }
+            
+            return false;
         } catch (SQLException e) {
             System.out.println("Error from update" + e.getMessage());
             e.printStackTrace();
